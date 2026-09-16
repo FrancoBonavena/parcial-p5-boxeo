@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>ROCKY vs DRAGO | El Ritmo del Combate - Arte Generativo Interactivo</title>
+  <meta name="description" content="Arte generativo interactivo: controlá a Rocky Balboa con tu voz y enfrentate a Ivan Drago. Tu volumen e intensidad vocal controlan los golpes, el ritmo y la agresividad del combate.">
+  
+  <!-- Fuentes estilizadas: Bebas Neue (títulos de boxeo) y Outfit (textos modernos y limpios) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="style.css">
+  
+  <!-- Bibliotecas p5.js y p5.sound -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.9.4/p5.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.9.4/addons/p5.sound.min.js"></script>
+</head>
+<body>
+
+  <!-- Contenedor principal del lienzo -->
+  <div id="canvas-container"></div>
+
+  <!-- Pantalla de Bienvenida / Interacción obligatoria para activar AudioContext -->
+  <div id="intro-screen" class="screen-overlay">
+    <div class="intro-backdrop"></div>
+    <div class="intro-content">
+      <div class="vintage-badge">ARTE GENERATIVO INTERACTIVO — ROCKY IV</div>
+      <h1 class="main-title">ROCKY <span style="color:#c8a20a; font-size:0.65em;">VS</span> DRAGO</h1>
+      <p class="main-subtitle">Úsá tu voz para que Rocky Balboa derrote a Ivan Drago.</p>
+      
+      <div class="guide-cards">
+        <div class="guide-item">
+          <span class="guide-level">SILENCIO</span>
+          <span class="guide-desc">Guardia y respiración</span>
+        </div>
+        <div class="guide-item">
+          <span class="guide-level">VOZ BAJA</span>
+          <span class="guide-desc">Jab</span>
+        </div>
+        <div class="guide-item">
+          <span class="guide-level">VOZ MEDIA</span>
+          <span class="guide-desc">Cross / Recto</span>
+        </div>
+        <div class="guide-item">
+          <span class="guide-level">VOZ ALTA</span>
+          <span class="guide-desc">Hook / Gancho</span>
+        </div>
+        <div class="guide-item guide-special">
+          <span class="guide-level">PICO DE VOZ</span>
+          <span class="guide-desc">Golpe Especial</span>
+        </div>
+      </div>
+
+      <button id="btn-start" class="glow-button" type="button">
+        <span class="btn-text">SUBIR AL RING</span>
+        <span class="btn-shine"></span>
+      </button>
+
+      <p class="mic-disclaimer">
+        El combate existe de forma autónoma. Tu voz modificará su ritmo, agresividad y energía visual.
+      </p>
+    </div>
+  </div>
+
+  <!-- Indicador flotante de audio superior durante la pelea -->
+  <div id="hud-audio" class="hud-audio-bar hidden">
+    <div class="hud-label">
+      <span class="hud-mic-icon">🎙️</span>
+      <span class="hud-text">INTENSIDAD DE VOZ:</span>
+      <span id="hud-tier-label" class="hud-tier">SILENCIO</span>
+      <div class="sens-controls">
+        <span class="sens-title">SENS:</span>
+        <button id="btn-sens-down" class="sens-btn" type="button" title="Bajar sensibilidad">−</button>
+        <span id="sens-value" class="sens-val">x4.5</span>
+        <button id="btn-sens-up" class="sens-btn" type="button" title="Subir sensibilidad">+</button>
+      </div>
+    </div>
+    <div class="hud-meter-track">
+      <div id="hud-meter-fill" class="hud-meter-fill"></div>
+      <div class="threshold-marker t1" title="Jab"></div>
+      <div class="threshold-marker t2" title="Cross"></div>
+      <div class="threshold-marker t3" title="Hook"></div>
+      <div class="threshold-marker t4" title="Especial"></div>
+    </div>
+  </div>
+
+  <!-- Script principal con toda la lógica de combate, arte generativo y p5.js -->
+  <script src="sketch.js"></script>
+</body>
+</html>
